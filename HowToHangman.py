@@ -1,8 +1,12 @@
+##Module de fonctions
 #11 erreurs pour perdre
+"""
 mot = "hey"
 interdite =[]
 vide = ["_" for i in range(len(mot))]
 fautes = 0
+"""
+langue = 0
 
 def entre():
     statut = True
@@ -31,6 +35,15 @@ def traitement():
         interdite.append(lettre)
         fautes +=1
 
+def changeLang(language_Label, languages):
+    global langue 
+    if langue == 4:
+        langue = 0
+    else:
+        langue += 1
+    language_Label.configure(text=languages[langue])
+
+"""
 print(vide)
 
 while True:
@@ -47,3 +60,4 @@ while True:
     if count == len(mot):
         print("Victory!")
         break
+"""
