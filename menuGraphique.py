@@ -13,8 +13,11 @@ menu.title("Menu Pendu")
 menu.config(bg='Black',cursor='X_cursor')
 
 ##Canvas
-pendu_Canvas = Canvas(menu, width=240, height=280, bg='Black', highlightbackground='yellow')
-score_Canvas = Canvas(menu, width=160, height=280, bg='Black', highlightbackground='yellow')
+pendu_Canvas = Canvas(menu, width=240, height=280, bg='Black', highlightbackground='Yellow')
+score_Canvas = Canvas(menu, width=160, height=280, bg='Black', highlightbackground='Yellow')
+place_Hold1 = Canvas(menu, width=30, height=300, bg='Black', highlightbackground='Black')
+place_Hold2 = Canvas(menu, width=300, height=30, bg='Black', highlightbackground='Black')
+place_Hold3 = Canvas(menu, width=300, height=30, bg='Black', highlightbackground='Black')
 
 ##Labels
 language_Label = Label(menu, text = languages[0], bg='Yellow', font=('Comic Sans MS', 10), padx=5, pady=5)
@@ -40,14 +43,17 @@ pendu_Canvas.create_line(180,140,150,120,fill='red',width=5)
 pendu_Canvas.create_line(180,140,210,120,fill='red',width=5)
 
 ##Affichage des différents widgets
-play_Button.grid(row=2,column=2)
-rules_Button.grid(row=3,column=2)
-credits_Button.grid(row=4,column=2)
-quit_Button.grid(row=6,column=5)
-language_Button.grid(row=1,column=4)
-pendu_Canvas.grid(row= 2, rowspan=3, column=3) 
-score_Canvas.grid(row=2, rowspan=3, column =1)
-language_Label.grid(row=1,column=5)
+play_Button.grid(row=3,column=3)
+rules_Button.grid(row=4,column=3)
+credits_Button.grid(row=5,column=3)
+quit_Button.grid(row=8,column=6)
+language_Button.grid(row=1,column=5, sticky=E)
+pendu_Canvas.grid(row= 3, rowspan=3, column=4, columnspan=2, padx=5) 
+score_Canvas.grid(row=3, rowspan=3, column=2, padx=5)
+language_Label.grid(row=1,column=6)
+place_Hold1.grid(row=1, rowspan=6, column=1)
+place_Hold2.grid(row=6, column=1, columnspan= 6)
+place_Hold3.grid(row=2, column=1, columnspan= 6)
 
 
 ##Programme principal

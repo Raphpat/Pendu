@@ -1,13 +1,10 @@
 ##Module de fonctions
 #11 erreurs pour perdre
-"""
-mot = "hey"
-interdite =[]
-vide = ["_" for i in range(len(mot))]
-fautes = 0
-"""
+
+##Variables locales
 langue = 0
 
+##Fonctions
 def entre():
     statut = True
     while statut == True:
@@ -43,21 +40,5 @@ def changeLang(language_Label, languages):
         langue += 1
     language_Label.configure(text=languages[langue])
 
-"""
-print(vide)
-
-while True:
-    traitement()
-    if fautes == 11:
-        print("C'est perdu!")
-        break
-    print("vide: ", vide)
-    print("interdite: ", interdite)
-    count = 0
-    for i in range(len(mot)):
-        if vide[i] != '_':
-            count += 1
-    if count == len(mot):
-        print("Victory!")
-        break
-"""
+def get_Pseudo(entry): #Pour le GUY pseudo
+    return entry.get()
