@@ -5,6 +5,10 @@
 langue = 0
 
 ##Fonctions
+def changeGUI(origin, target):
+    origin.pack_forget()
+    target.pack()
+
 def entre():
     statut = True
     while statut == True:
@@ -40,5 +44,7 @@ def changeLang(language_Label, languages):
         langue += 1
     language_Label.configure(text=languages[langue])
 
-def get_Pseudo(entry): #Pour le GUY pseudo
+def get_Pseudo(entry, origin, target): #Pour le GUY pseudo
+    changeGUI(origin, target)
     return entry.get()
+

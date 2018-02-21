@@ -1,4 +1,4 @@
-##Affichage graphique du menu
+##Affichage graphique du jeu
 
 import os
 from tkinter import *
@@ -8,28 +8,26 @@ languages = ["Français", "English", "Deutsch", "Español", "Italiano"]
 
 ##Definition de l'interface graphique
 menu = Tk()
-menu.title("Menu Pendu")
+menu.title("menu_Frame Pendu")
 #menu.geometry("720x480+100+0")
-menu.config(bg='Black',cursor='X_cursor')
 
-##Canvas
-pendu_Canvas = Canvas(menu, width=240, height=280, bg='Black', highlightbackground='Yellow')
-score_Canvas = Canvas(menu, width=160, height=280, bg='Black', highlightbackground='Yellow')
-place_Hold1 = Canvas(menu, width=30, height=300, bg='Black', highlightbackground='Black')
-place_Hold2 = Canvas(menu, width=300, height=30, bg='Black', highlightbackground='Black')
-place_Hold3 = Canvas(menu, width=300, height=30, bg='Black', highlightbackground='Black')
-
-##Labels
-language_Label = Label(menu, text = languages[0], bg='Yellow', font=('Comic Sans MS', 10), padx=5, pady=5)
-
-##Buttons
-play_Button = Button(menu,text='Jouer',height=2, width=15, bg='Yellow', font=('Comic Sans MS', 15, 'bold'), padx=5, pady=5)
-rules_Button = Button(menu, text='Règles', width=15, bg='Yellow', font=('Comic Sans MS', 15, 'bold'), padx=5, pady=5)
-credits_Button = Button(menu, text='Crédits', width=15, bg='Yellow', font=('Comic Sans MS', 15, 'bold'), padx=5, pady=5)
-quit_Button = Button(menu, text='Quitter', bg='Yellow', font=('Comic Sans MS', 12), command= lambda: menu.destroy())
-language_Button = Button(menu, text='Langue', bg='Yellow', font=('Comic Sans MS', 12), command = lambda: changeLang(language_Label, languages))
-
-##Desssins de canvas
+##Frame du menu
+menu_Frame = Frame(menu, bg='Black', cursor='X_cursor')
+#Canvas
+pendu_Canvas = Canvas(menu_Frame, width=240, height=280, bg='Black', highlightbackground='Yellow')
+score_Canvas = Canvas(menu_Frame, width=160, height=280, bg='Black', highlightbackground='Yellow')
+place_Hold1 = Canvas(menu_Frame, width=30, height=300, bg='Black', highlightbackground='Black')
+place_Hold2 = Canvas(menu_Frame, width=300, height=30, bg='Black', highlightbackground='Black')
+place_Hold3 = Canvas(menu_Frame, width=300, height=30, bg='Black', highlightbackground='Black')
+#Labels
+language_Label = Label(menu_Frame, text = languages[0], bg='Yellow', font=('Comic Sans MS', 10), padx=5, pady=5)
+#Buttons
+play_Button1 = Button(menu_Frame,text='Jouer',height=2, width=15, bg='Yellow', font=('Comic Sans MS', 15, 'bold'), padx=5, pady=5, command = lambda: changeGUI(menu_Frame, pseudo_Frame))
+rules_Button = Button(menu_Frame, text='Règles', width=15, bg='Yellow', font=('Comic Sans MS', 15, 'bold'), padx=5, pady=5, command = lambda: changeGUI(menu_Frame, rules_Frame))
+credits_Button = Button(menu_Frame, text='Crédits', width=15, bg='Yellow', font=('Comic Sans MS', 15, 'bold'), padx=5, pady=5, command = lambda: changeGUI(menu_Frame, credits_Frame))
+quit_Button = Button(menu_Frame, text='Quitter', bg='Yellow', font=('Comic Sans MS', 12), command = lambda: menu.destroy())
+language_Button = Button(menu_Frame, text='Langue', bg='Yellow', font=('Comic Sans MS', 12), command = lambda: changeLang(language_Label, languages))
+#Desssins de canvas
 pendu_Canvas.create_line(20,270,220,270,fill='red',width=5)
 pendu_Canvas.create_line(50,270,50,30,fill='red',width=5)
 pendu_Canvas.create_line(48,30,180,30,fill='red',width=5)
@@ -41,9 +39,8 @@ pendu_Canvas.create_line(180,168,160,230,fill='red',width=5)
 pendu_Canvas.create_line(180,168,200,230,fill='red',width=5)
 pendu_Canvas.create_line(180,140,150,120,fill='red',width=5)
 pendu_Canvas.create_line(180,140,210,120,fill='red',width=5)
-
-##Affichage des différents widgets
-play_Button.grid(row=3,column=3)
+#Affichage des différents widgets
+play_Button1.grid(row=3,column=3)
 rules_Button.grid(row=4,column=3)
 credits_Button.grid(row=5,column=3)
 quit_Button.grid(row=8,column=6)
@@ -54,6 +51,47 @@ language_Label.grid(row=1,column=6)
 place_Hold1.grid(row=1, rowspan=6, column=1)
 place_Hold2.grid(row=6, column=1, columnspan= 6)
 place_Hold3.grid(row=2, column=1, columnspan= 6)
+menu_Frame.pack() #Affichage au lancement
+
+##Frame des règles
+rules_Frame = Frame(menu, bg='Black', cursor='X_cursor')
+#Importation des règles
+rules_txt = open("rules.txt", "r", encoding="UTF8").read()
+#Définition des widgets
+rules_Label = Label(rules_Frame, text=rules_txt, bg='Black', fg='White', font=('Comic Sans MS', 12), padx=5, pady=15)
+play_Button2 = Button(rules_Frame, text='Jouer', bg='Yellow', font=('Comic Sans MS', 12), command = lambda: changeGUI(rules_Frame, pseudo_Frame))
+menu_Button1 = Button(rules_Frame, text='Menu ', bg='Yellow', font=('Comic Sans MS', 12), command = lambda: changeGUI(rules_Frame, menu_Frame))
+#Affichage des widgets
+rules_Label.grid(row=2, column=2)
+play_Button2.grid(row=3, column=3)
+menu_Button1.grid(row=4, column=3)
+
+##Frame des crédits
+credits_Frame = Frame(menu, bg='Black', cursor='X_cursor')
+#Importation des crédits
+credits_txt = open("credits.txt", "r", encoding="UTF8").read()
+#Définition des widgets
+credits_Label = Label(credits_Frame, text=credits_txt, bg='Black', fg='White', font=('Comic Sans MS', 12), padx=5, pady=15)
+menu_Button2 = Button(credits_Frame, text='Menu', bg='Yellow', font=('Comic Sans MS', 12), command = lambda: changeGUI(credits_Frame, menu_Frame))
+#Affichage des widgets
+credits_Label.grid(row=2, column=2)
+menu_Button2.grid(row=3, column=3)
 
 
-##Programme principal
+##Frame du pseudo
+pseudo_Frame = Frame(menu, bg='Black', cursor='X_cursor')
+#Définition des widgets
+pseudo_Entry = Entry(pseudo_Frame, font=('Comic Sans MS', 12))
+pseudo_Button = Button(pseudo_Frame, text='Soumettre', bg='Yellow', font=('Comic Sans MS', 12), command= lambda: get_Pseudo(pseudo_Entry, pseudo_Frame, game_Frame))
+#Affichage des widgets
+pseudo_Entry.grid(row=1, column=2, padx=5)
+pseudo_Button.grid(row=1, column=3)
+
+##Frame du jeu
+game_Frame = Frame(menu, bg='Black', cursor='X_cursor')
+#Définition des widgets
+placeHolder = Canvas(game_Frame, width=30, height=300, bg='Black', highlightbackground=None) #To be replaced with actual game GUI
+TestButton = Button(game_Frame, text="Back to Menu", command=lambda: changeGUI(game_Frame, menu_Frame))
+#Affichage des widgets
+placeHolder.grid(row=1, column=1)
+TestButton.grid(row=2, column=1)
