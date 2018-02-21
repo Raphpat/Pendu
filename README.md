@@ -1,2 +1,2 @@
 # Pendu
-Projet de bac sujet "pendu" par Raphaël Pattie et Lucy Eberhardt
+Projet de bac 2018 sujet "pendu" développé par Raphaël Pattie et Lucy Eberhardt
