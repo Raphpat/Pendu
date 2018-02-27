@@ -4,5 +4,5 @@ deviner en proposant des lettres.
 Si une lettre est juste, elle s'affiche.
 Sinon, vous marquez une faute
 et vous vous rapprocher de la pendaison.
-Quand la potene et l'homme sont entierement dessines,
+Quand la potence et l'homme sont entierement dessines,
 c'est perdu!

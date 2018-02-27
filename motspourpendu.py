@@ -1,3 +1,7 @@
+##Variables locales
+
+langue = 0
+
 mots_pour_pendu = {'niveau1':{'français':["chat","lait","viande","lit","chaise","veste","boite","train","bonbon","sac"],
                               'anglais':["cat","milk","meat","bed","chair","coat","box","train","sweet","bag"]},
                                
@@ -10,4 +14,14 @@ mots_pour_pendu = {'niveau1':{'français':["chat","lait","viande","lit","chaise"
                    'X-pert':{'français':["bibliotheque","dictionnaire","","orchestre","xylophone","zero","chuchotter","arrosoir","entonnoir","anticonstitutionnellement"],
                              'anglais':["library","dictionary","","orchestra","xylophone","zero","whisper","watering can","funnel","unconstitutionally"]}}
 
-print(mots_pour_pendu['niveau1']['anglais'][1])
+#print(mots_pour_pendu['niveau1']['anglais'][1])
+
+##Fonctions
+
+def changeLang(language_Label, languages):
+    global langue 
+    if langue == 4:
+        langue = 0
+    else:
+        langue += 1
+    language_Label.configure(text=languages[langue])

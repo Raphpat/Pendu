@@ -3,6 +3,7 @@
 import os
 from tkinter import *
 from HowToHangman import *
+from motspourpendu import *
 
 languages = ["Français", "English", "Deutsch", "Español", "Italiano"]
 
@@ -77,21 +78,22 @@ menu_Button2 = Button(credits_Frame, text='Menu', bg='Yellow', font=('Comic Sans
 credits_Label.grid(row=2, column=2)
 menu_Button2.grid(row=3, column=3)
 
-
 ##Frame du pseudo
 pseudo_Frame = Frame(menu, bg='Black', cursor='X_cursor')
 #Définition des widgets
+pseudo_Label = Label(pseudo_Frame, text='Entrez votre pseudo', font=('Comic Sans MS', 12), bg='Black', fg='White')
 pseudo_Entry = Entry(pseudo_Frame, font=('Comic Sans MS', 12))
 pseudo_Button = Button(pseudo_Frame, text='Soumettre', bg='Yellow', font=('Comic Sans MS', 12), command= lambda: get_Pseudo(pseudo_Entry, pseudo_Frame, game_Frame))
 #Affichage des widgets
-pseudo_Entry.grid(row=1, column=2, padx=5)
-pseudo_Button.grid(row=1, column=3)
+pseudo_Label.grid(row=1, column=1)
+pseudo_Entry.grid(row=2, column=1, padx=5)
+pseudo_Button.grid(row=2, column=2)
 
 ##Frame du jeu
 game_Frame = Frame(menu, bg='Black', cursor='X_cursor')
 #Définition des widgets
 placeHolder = Canvas(game_Frame, width=30, height=300, bg='Black', highlightbackground=None) #To be replaced with actual game GUI
-TestButton = Button(game_Frame, text="Back to Menu", command=lambda: changeGUI(game_Frame, menu_Frame))
+TestButton = Button(game_Frame, text="Back to Menu", bg='Yellow', font=('Comic Sans MS', 12), command=lambda: changeGUI(game_Frame, menu_Frame))
 #Affichage des widgets
 placeHolder.grid(row=1, column=1)
 TestButton.grid(row=2, column=1)

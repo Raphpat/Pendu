@@ -1,8 +1,7 @@
 ##Module de fonctions
 #11 erreurs pour perdre
 
-##Variables locales
-langue = 0
+
 
 ##Fonctions
 def changeGUI(origin, target):
@@ -35,14 +34,6 @@ def traitement():
     if erreur == True:
         interdite.append(lettre)
         fautes +=1
-
-def changeLang(language_Label, languages):
-    global langue 
-    if langue == 4:
-        langue = 0
-    else:
-        langue += 1
-    language_Label.configure(text=languages[langue])
 
 def get_Pseudo(entry, origin, target): #Pour le GUY pseudo
     changeGUI(origin, target)
