@@ -86,7 +86,7 @@ pseudo_Frame = Frame(menu, bg='Black', cursor='X_cursor')
 #Définition des widgets
 pseudo_Label = Label(pseudo_Frame, text='Entrez votre pseudo', font=('Comic Sans MS', 12), bg='Black', fg='White')
 pseudo_Entry = Entry(pseudo_Frame, font=('Comic Sans MS', 12))
-pseudo_Button = Button(pseudo_Frame, text='Soumettre', bg='Yellow', font=('Comic Sans MS', 12), command= lambda: get_Pseudo(pseudo_Entry, pseudo_Frame, game_Frame))
+pseudo_Button = Button(pseudo_Frame, text='Soumettre', bg='Yellow', font=('Comic Sans MS', 12), command= lambda: get_Pseudo(pseudo_Entry, pseudo_Label, pseudo_Frame, game_Frame, game_Pseudo))
 #Affichage des widgets
 pseudo_Label.grid(row=1, column=1)
 pseudo_Entry.grid(row=2, column=1, padx=5)
@@ -94,9 +94,24 @@ pseudo_Button.grid(row=2, column=2)
 
 ##Frame du jeu
 game_Frame = Frame(menu, bg='Black', cursor='X_cursor')
-#Définition des widgets
+#Canvas
 placeHolder = Canvas(game_Frame, width=30, height=300, bg='Black', highlightbackground=None) #To be replaced with actual game GUI
-TestButton = Button(game_Frame, text="Back to Menu", bg='Yellow', font=('Comic Sans MS', 12), command=lambda: changeGUI(game_Frame, menu_Frame))
+#Label
+game_Pseudo = Label(game_Frame, text='Pseudo: ', bg='Black', fg='White', font=('Comic Sans MS', 12))
+#Button
+Test_Button = Button(game_Frame, text="Back to Menu", bg='Yellow', font=('Comic Sans MS', 12), command=lambda: changeGUI(game_Frame, quit_Frame))
 #Affichage des widgets
-placeHolder.grid(row=1, column=1)
-TestButton.grid(row=2, column=1)
+placeHolder.grid(row=2, column=1)
+Test_Button.grid(row=3, column=1)
+game_Pseudo.grid(row=1, column=1)
+
+##Frame pour quitter
+quit_Frame = Frame(menu, bg='Black', cursor='X_cursor')
+#Définition des widgets
+quit_Label = Label(quit_Frame, text='Voulez vous vraiment quitter la partie?', font=('Comic Sans MS', 15), bg='Black', fg='White')
+oui_Button = Button(quit_Frame, text="Oui", bg='Yellow', font=('Comic Sans MS', 15), command=lambda: quitGUI(quit_Frame, menu_Frame, pseudo_Entry))
+non_Button = Button(quit_Frame, text="Non", bg='Yellow', font=('Comic Sans MS', 15), command=lambda: changeGUI(quit_Frame, game_Frame))
+#Affichage des widgets
+quit_Label.grid(row=1, column=1, columnspan=2)
+oui_Button.grid(row=2, column=1)
+non_Button.grid(row=2, column=2)

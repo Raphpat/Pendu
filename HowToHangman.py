@@ -1,13 +1,18 @@
 ##Module de fonctions
 #11 erreurs pour perdre
 
-
+##Variables locales
+pseudoText = 'Pseudo: '
 
 ##Fonctions
 def changeGUI(origin, target):
     origin.pack_forget()
     target.pack()
 
+def quitGUI(origin, target, pseudo):
+    pseudo.delete(0,len(pseudo.get()))
+    changeGUI(origin, target)
+    
 def entre():
     statut = True
     while statut == True:
@@ -35,7 +40,14 @@ def traitement():
         interdite.append(lettre)
         fautes +=1
 
-def get_Pseudo(entry, origin, target): #Pour le GUY pseudo
-    changeGUI(origin, target)
-    return entry.get()
+def get_Pseudo(entry, label, origin, target, game_Pseudo): #Pour le GUY pseudo
+    pseudo = entry.get()
+    pseudoBar = pseudoText
+    if len(pseudo) == 0:
+        label.configure(text='Entrez votre pseudo!', fg='Red')
+    else:
+        changeGUI(origin, target)
+        pseudoBar += pseudo
+        game_Pseudo.configure(text = pseudoBar)
+
 
