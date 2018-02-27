@@ -6,6 +6,7 @@ from HowToHangman import *
 from motspourpendu import *
 
 languages = ["Français", "English", "Deutsch", "Español", "Italiano"]
+levels = ["Niveau 1", "Niveau 2", "Niveau 3", "X-pert"]
 
 ##Definition de l'interface graphique
 menu = Tk()
@@ -17,17 +18,18 @@ menu_Frame = Frame(menu, bg='Black', cursor='X_cursor')
 #Canvas
 pendu_Canvas = Canvas(menu_Frame, width=240, height=280, bg='Black', highlightbackground='Yellow')
 score_Canvas = Canvas(menu_Frame, width=160, height=280, bg='Black', highlightbackground='Yellow')
-place_Hold1 = Canvas(menu_Frame, width=30, height=300, bg='Black', highlightbackground='Black')
+place_Hold1 = Canvas(menu_Frame, width=300, height=30, bg='Black', highlightbackground='Black')
 place_Hold2 = Canvas(menu_Frame, width=300, height=30, bg='Black', highlightbackground='Black')
-place_Hold3 = Canvas(menu_Frame, width=300, height=30, bg='Black', highlightbackground='Black')
 #Labels
 language_Label = Label(menu_Frame, text = languages[0], bg='Yellow', font=('Comic Sans MS', 10), padx=5, pady=5)
+level_Label = Label(menu_Frame, text = levels[0], bg='Yellow', font=('Comic Sans MS', 10), padx=5, pady=5)
 #Buttons
 play_Button1 = Button(menu_Frame,text='Jouer',height=2, width=15, bg='Yellow', font=('Comic Sans MS', 15, 'bold'), padx=5, pady=5, command = lambda: changeGUI(menu_Frame, pseudo_Frame))
 rules_Button = Button(menu_Frame, text='Règles', width=15, bg='Yellow', font=('Comic Sans MS', 15, 'bold'), padx=5, pady=5, command = lambda: changeGUI(menu_Frame, rules_Frame))
 credits_Button = Button(menu_Frame, text='Crédits', width=15, bg='Yellow', font=('Comic Sans MS', 15, 'bold'), padx=5, pady=5, command = lambda: changeGUI(menu_Frame, credits_Frame))
 quit_Button = Button(menu_Frame, text='Quitter', bg='Yellow', font=('Comic Sans MS', 12), command = lambda: menu.destroy())
 language_Button = Button(menu_Frame, text='Langue', bg='Yellow', font=('Comic Sans MS', 12), command = lambda: changeLang(language_Label, languages))
+level_Button = Button(menu_Frame, text='Niveau', bg='Yellow', font=('Comic Sans MS', 12), command = lambda: changeLevel(level_Label, levels))
 #Desssins de canvas
 pendu_Canvas.create_line(20,270,220,270,fill='red',width=5)
 pendu_Canvas.create_line(50,270,50,30,fill='red',width=5)
@@ -41,17 +43,18 @@ pendu_Canvas.create_line(180,168,200,230,fill='red',width=5)
 pendu_Canvas.create_line(180,140,150,120,fill='red',width=5)
 pendu_Canvas.create_line(180,140,210,120,fill='red',width=5)
 #Affichage des différents widgets
-play_Button1.grid(row=3,column=3)
-rules_Button.grid(row=4,column=3)
-credits_Button.grid(row=5,column=3)
-quit_Button.grid(row=8,column=6)
-language_Button.grid(row=1,column=5, sticky=E)
+play_Button1.grid(row=3, column=3)
+rules_Button.grid(row=4, column=3)
+credits_Button.grid(row=5, column=3)
+quit_Button.grid(row=8, column=6)
+language_Button.grid(row=1, column=5, sticky=E)
+level_Button.grid(row=1, column=1)
 pendu_Canvas.grid(row= 3, rowspan=3, column=4, columnspan=2, padx=5) 
 score_Canvas.grid(row=3, rowspan=3, column=2, padx=5)
-language_Label.grid(row=1,column=6)
-place_Hold1.grid(row=1, rowspan=6, column=1)
-place_Hold2.grid(row=6, column=1, columnspan= 6)
-place_Hold3.grid(row=2, column=1, columnspan= 6)
+language_Label.grid(row=1, column=6)
+level_Label.grid(row=1, column=2, sticky=W)
+place_Hold1.grid(row=6, column=1, columnspan= 6)
+place_Hold2.grid(row=2, column=1, columnspan= 6)
 menu_Frame.pack() #Affichage au lancement
 
 ##Frame des règles
