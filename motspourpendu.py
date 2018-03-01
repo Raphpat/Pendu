@@ -9,11 +9,11 @@ mots_pour_pendu = {'Niveau 1':{'Français':["chat","lait","viande","lit","chaise
                    'Niveau 2':{'Français':["chapeau","cuisine","tiroire","avocat","crepe","lumiere","telephone","volets","magazine","plante"],
                               'English':["hat","kitchen","draw","avocado","pancake","light","telephone","shutters","magasine","plant"]},
 
-                   'Niveau 3':{'Français':["caramel","oreiller","","aviron","armoire","interieur","meuble","matelas","","plafond"],
-                               'English':["caramel","pillow","","rowing","cupboard","inside","furniture","mattress","","ceiling"]},
+                   'Niveau 3':{'Français':["caramel","oreiller","adoption","aviron","armoire","interieur","meuble","matelas","parapluie","plafond"],
+                               'English':["caramel","pillow","adoption","rowing","cupboard","inside","furniture","mattress","umbrella","ceiling"]},
 
-                   'X-pert':{'Français':["bibliotheque","dictionnaire","","orchestre","xylophone","zero","chuchotter","arrosoir","entonnoir","anticonstitutionnellement"],
-                             'English':["library","dictionary","","orchestra","xylophone","zero","whisper","watering can","funnel","unconstitutionally"]}}
+                   'X-pert':{'Français':["bibliotheque","dictionnaire","mercantile","orchestre","xylophone","zero","chuchotter","","entonnoir","anticonstitutionnellement"],
+                             'English':["library","dictionary","mercantile","orchestra","xylophone","zero","whisper","","funnel","unconstitutionally"]}}
 
 #print(mots_pour_pendu['niveau1']['anglais'][1])
 

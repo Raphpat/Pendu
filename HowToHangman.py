@@ -1,6 +1,8 @@
 ##Module de fonctions
 #11 erreurs pour perdre
 
+from leaderboard import afficher_scores
+
 ##Variables locales
 pseudoText = 'Pseudo: '
 
@@ -11,9 +13,10 @@ def changeGUI(origin, target):
     origin.pack_forget()
     target.pack()
 
-def quitGUI(origin, target, pseudo):
+def quitGUI(origin, target, pseudo, leader):
     pseudo.delete(0,len(pseudo.get()))
     changeGUI(origin, target)
+    afficher_scores(leader, target)
 
 def entre():
     statut = True

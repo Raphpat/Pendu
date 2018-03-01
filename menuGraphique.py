@@ -4,6 +4,7 @@ import os
 from tkinter import *
 from HowToHangman import *
 from motspourpendu import *
+from leaderboard import *
 
 languages = ["Français", "English", "Deutsch", "Español", "Italiano"]
 levels = ["Niveau 1", "Niveau 2", "Niveau 3", "X-pert"]
@@ -17,7 +18,7 @@ menu.title("menu_Frame Pendu")
 menu_Frame = Frame(menu, bg='Black', cursor='X_cursor')
 # Canvas
 pendu_Canvas = Canvas(menu_Frame, width=240, height=280, bg='Black', highlightbackground='Yellow')
-score_Canvas = Canvas(menu_Frame, width=160, height=280, bg='Black', highlightbackground='Yellow')
+#score_Canvas = Canvas(menu_Frame, width=160, height=280, bg='Black', highlightbackground='Yellow')
 place_Hold1 = Canvas(menu_Frame, width=300, height=30, bg='Black', highlightbackground='Black')
 place_Hold2 = Canvas(menu_Frame, width=300, height=30, bg='Black', highlightbackground='Black')
 # Labels
@@ -48,6 +49,10 @@ pendu_Canvas.create_line(180, 168, 160, 230, fill='red', width=5)
 pendu_Canvas.create_line(180, 168, 200, 230, fill='red', width=5)
 pendu_Canvas.create_line(180, 140, 150, 120, fill='red', width=5)
 pendu_Canvas.create_line(180, 140, 210, 120, fill='red', width=5)
+# Tableau des scores
+score_Frame = Frame(menu_Frame, bg='Black', highlightcolor='Yellow',highlightbackground='Yellow', highlightthickness='1')
+score_Frame.grid(row=3, rowspan=3, column=2, padx=10)
+afficher_scores_first(score_Frame)
 # Affichage des différents widgets
 play_Button1.grid(row=3, column=3)
 rules_Button.grid(row=4, column=3)
@@ -56,7 +61,7 @@ quit_Button.grid(row=8, column=6)
 language_Button.grid(row=1, column=5, sticky=E)
 level_Button.grid(row=1, column=1)
 pendu_Canvas.grid(row=3, rowspan=3, column=4, columnspan=2, padx=5)
-score_Canvas.grid(row=3, rowspan=3, column=2, padx=5)
+#score_Canvas.grid(row=3, rowspan=3, column=2, padx=5)
 language_Label.grid(row=1, column=6)
 level_Label.grid(row=1, column=2, sticky=W)
 place_Hold1.grid(row=6, column=1, columnspan=6)
@@ -124,7 +129,7 @@ quit_Frame = Frame(menu, bg='Black', cursor='X_cursor')
 quit_Label = Label(quit_Frame, text='Voulez vous vraiment quitter la partie?', font=('Comic Sans MS', 15), bg='Black',
                    fg='White')
 oui_Button = Button(quit_Frame, text="Oui", bg='Yellow', font=('Comic Sans MS', 15),
-                    command=lambda: quitGUI(quit_Frame, menu_Frame, pseudo_Entry))
+                    command=lambda: quitGUI(quit_Frame, menu_Frame, pseudo_Entry, score_Frame))
 non_Button = Button(quit_Frame, text="Non", bg='Yellow', font=('Comic Sans MS', 15),
                     command=lambda: changeGUI(quit_Frame, game_Frame))
 # Affichage des widgets
