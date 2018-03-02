@@ -30,7 +30,7 @@ def afficher_scores_first(frame):
     name_Label.grid(row=2, column=1)
     score_Label.grid(row=2, column=2)
     score_Sort()
-    for i in range(len(score)):
+    for i in range(10):
         pseudo = Label(frame, text=scores[i][0], bg='Black', fg='Yellow', font=('Comic Sans MS', 9))
         score = Label(frame, text=scores[i][1], bg='Black', fg='Yellow', font=('Comic Sans MS', 9))
         pseudo.grid(row=i+3, column=1)

@@ -15,10 +15,9 @@ menu.title("menu_Frame Pendu")
 # menu.geometry("720x480+100+0")
 
 ##Frame du menu
-menu_Frame = Frame(menu, bg='Black', cursor='X_cursor')
+menu_Frame = Frame(menu, bg='Black', cursor='rtl_logo')
 # Canvas
 pendu_Canvas = Canvas(menu_Frame, width=240, height=280, bg='Black', highlightbackground='Yellow')
-#score_Canvas = Canvas(menu_Frame, width=160, height=280, bg='Black', highlightbackground='Yellow')
 place_Hold1 = Canvas(menu_Frame, width=300, height=30, bg='Black', highlightbackground='Black')
 place_Hold2 = Canvas(menu_Frame, width=300, height=30, bg='Black', highlightbackground='Black')
 # Labels
@@ -61,12 +60,11 @@ quit_Button.grid(row=8, column=6)
 language_Button.grid(row=1, column=5, sticky=E)
 level_Button.grid(row=1, column=1)
 pendu_Canvas.grid(row=3, rowspan=3, column=4, columnspan=2, padx=5)
-#score_Canvas.grid(row=3, rowspan=3, column=2, padx=5)
 language_Label.grid(row=1, column=6)
 level_Label.grid(row=1, column=2, sticky=W)
 place_Hold1.grid(row=6, column=1, columnspan=6)
 place_Hold2.grid(row=2, column=1, columnspan=6)
-menu_Frame.pack()  # Affichage au lancement
+#menu_Frame.pack()  # Affichage au lancement
 
 ##Frame des règles
 rules_Frame = Frame(menu, bg='Black', cursor='X_cursor')
@@ -111,18 +109,29 @@ pseudo_Button.grid(row=2, column=2)
 ##Frame du jeu
 game_Frame = Frame(menu, bg='Black', cursor='X_cursor')
 # Canvas
-placeHolder = Canvas(game_Frame, width=30, height=300, bg='Black',
-                     highlightbackground=None)  # To be replaced with actual game GUI
+place_Hold3 = Canvas(game_Frame, width=300, height=30, bg='Black', highlightbackground='Black')
+pendu_Anime = Canvas(game_Frame, width=240, height=280, bg='Black', highlightbackground='Yellow')
 # Label
-game_Pseudo = Label(game_Frame, text='Pseudo: ', bg='Black', fg='White', font=('Comic Sans MS', 12))
+game_Pseudo = Label(game_Frame, text='Pseudo: ', bg='Yellow', fg='Black', font=('Comic Sans MS', 12))
+mot_Label = Label(game_Frame, text='Mot à deviner: _ _ _ _ _ _', bg = 'Yellow', fg ='Black', font=('Comic Sans MS', 12))
+input_Label = Label(game_Frame, text='Choisissez une lettre: ', bg = 'Black', fg ='White', font=('Comic Sans MS', 12))
 # Button
-Test_Button = Button(game_Frame, text="Back to Menu", bg='Yellow', font=('Comic Sans MS', 12),
+leave_Button = Button(game_Frame, text="Back to Menu", bg='Yellow', font=('Comic Sans MS', 12),
                      command=lambda: changeGUI(game_Frame, quit_Frame))
+input_Button = Button(game_Frame, text='Avez-vous raison?', bg='Yellow', font=('Comic Sans MS', 12))
+# Entry
+input_Entry = Entry(game_Frame, font=('Comic Sans MS', 12))
 # Affichage des widgets
-placeHolder.grid(row=2, column=1)
-Test_Button.grid(row=3, column=1)
+leave_Button.grid(row=8, column=6, sticky=E)
 game_Pseudo.grid(row=1, column=1)
+mot_Label.grid(row=3, column=2, columnspan=2)
+input_Label.grid(row=4, column=2)
+input_Entry.grid(row=4, column=3)
+input_Button.grid(row=6, column=2, columnspan=2)
+place_Hold3.grid(row=5, column=1, columnspan=4)
+pendu_Anime.grid(row=2, rowspan=3, column=5, columnspan=2)
 
+game_Frame.pack()
 ##Frame pour quitter
 quit_Frame = Frame(menu, bg='Black', cursor='X_cursor')
 # Définition des widgets
