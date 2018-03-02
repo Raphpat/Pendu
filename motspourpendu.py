@@ -16,7 +16,9 @@ mots_pour_pendu = {'Niveau 1':{'Français':["chat","lait","viande","lit","chaise
                              'English':["library","dictionary","mercantile","orchestra","xylophone","zero","whisper","","funnel","unconstitutionally"]}}
 
 #print(mots_pour_pendu['niveau1']['anglais'][1])
-
+#Create function that is given level and language and that will chose randomly a word.
+#Make it so that the word is show using "_" on the game_Frame
+#Entry in game Frame so that user can add its letters
 ##Fonctions
 
 def changeLang(language_Label, languages):

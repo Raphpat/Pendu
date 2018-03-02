@@ -6,7 +6,7 @@ leaderboard.close()
 scores=[]
 
 #Méthode permettant de stocker dans scores le meilleur score de chaque pseudo dans le document leaderboard.txt
-with open("F:/Pendu-master/leaderboard.txt","r") as document:
+with open("F:/Pendu-master/leaderboard.txt","r") as document: #When adding a score, need to add to the txt AND the score[] so that it is able to be shown.
     for line in document:
         line = line.split()
         if not line:
@@ -30,13 +30,13 @@ def afficher_scores_first(frame):
     name_Label.grid(row=2, column=1)
     score_Label.grid(row=2, column=2)
     score_Sort()
-    for i in range(10):
+    for i in range(len(score)):
         pseudo = Label(frame, text=scores[i][0], bg='Black', fg='Yellow', font=('Comic Sans MS', 9))
         score = Label(frame, text=scores[i][1], bg='Black', fg='Yellow', font=('Comic Sans MS', 9))
         pseudo.grid(row=i+3, column=1)
         score.grid(row=i+3, column=2)
 
-def afficher_scores(frame, menu):
+def afficher_scores(frame, menu): 
     frame.destroy()
     score_Frame = Frame(menu, bg='Black', highlightcolor='Yellow',highlightbackground='Yellow', highlightthickness='1')
     score_Frame.grid(row=3, rowspan=3, column=2, padx=10)
