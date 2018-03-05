@@ -7,7 +7,7 @@ from motspourpendu import *
 from leaderboard import *
 
 languages = ["Français", "English", "Deutsch", "Español", "Italiano"]
-levels = ["Niveau 1", "Niveau 2", "Niveau 3", "X-pert"]
+levels = ["Niveau 1", "Niveau 2", "Niveau 3", "X-pert"] #Enlever le niveau si utilisiation dico texte
 
 ##Definition de l'interface graphique
 menu = Tk()
@@ -64,7 +64,7 @@ language_Label.grid(row=1, column=6)
 level_Label.grid(row=1, column=2, sticky=W)
 place_Hold1.grid(row=6, column=1, columnspan=6)
 place_Hold2.grid(row=2, column=1, columnspan=6)
-#menu_Frame.pack()  # Affichage au lancement
+menu_Frame.pack()  # Affichage au lancement
 
 ##Frame des règles
 rules_Frame = Frame(menu, bg='Black', cursor='X_cursor')
@@ -110,17 +110,18 @@ pseudo_Button.grid(row=2, column=2)
 game_Frame = Frame(menu, bg='Black', cursor='X_cursor')
 # Canvas
 place_Hold3 = Canvas(game_Frame, width=300, height=30, bg='Black', highlightbackground='Black')
+place_Hold4 = Canvas(game_Frame, width=30, height=300, bg='Black', highlightbackground='Black')
 pendu_Anime = Canvas(game_Frame, width=240, height=280, bg='Black', highlightbackground='Yellow')
+# Entry
+input_Entry = Entry(game_Frame, font=('Comic Sans MS', 12))
 # Label
 game_Pseudo = Label(game_Frame, text='Pseudo: ', bg='Yellow', fg='Black', font=('Comic Sans MS', 12))
-mot_Label = Label(game_Frame, text='Mot à deviner: _ _ _ _ _ _', bg = 'Yellow', fg ='Black', font=('Comic Sans MS', 12))
+mot_Label = Label(game_Frame, text=affichermot(), bg = 'Yellow', fg ='Black', font=('Comic Sans MS', 12))
 input_Label = Label(game_Frame, text='Choisissez une lettre: ', bg = 'Black', fg ='White', font=('Comic Sans MS', 12))
 # Button
 leave_Button = Button(game_Frame, text="Back to Menu", bg='Yellow', font=('Comic Sans MS', 12),
                      command=lambda: changeGUI(game_Frame, quit_Frame))
-input_Button = Button(game_Frame, text='Avez-vous raison?', bg='Yellow', font=('Comic Sans MS', 12))
-# Entry
-input_Entry = Entry(game_Frame, font=('Comic Sans MS', 12))
+input_Button = Button(game_Frame, text='Avez-vous raison?', bg='Yellow', font=('Comic Sans MS', 12), command=lambda: soumettre(input_Entry, input_Label, mot, mot_Label))
 # Affichage des widgets
 leave_Button.grid(row=8, column=6, sticky=E)
 game_Pseudo.grid(row=1, column=1)
@@ -129,9 +130,10 @@ input_Label.grid(row=4, column=2)
 input_Entry.grid(row=4, column=3)
 input_Button.grid(row=6, column=2, columnspan=2)
 place_Hold3.grid(row=5, column=1, columnspan=4)
+place_Hold4.grid(row=2, rowspan=5, column=4)
 pendu_Anime.grid(row=2, rowspan=3, column=5, columnspan=2)
 
-game_Frame.pack()
+#game_Frame.pack()
 ##Frame pour quitter
 quit_Frame = Frame(menu, bg='Black', cursor='X_cursor')
 # Définition des widgets

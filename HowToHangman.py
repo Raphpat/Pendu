@@ -5,7 +5,10 @@ from leaderboard import afficher_scores
 
 ##Variables locales
 pseudoText = 'Pseudo: '
-
+fautes = 0
+interdite = []
+mot = 'allo' #fonction
+motaffiche = 'Mot à deviner:'
 ##Fonctions
 
 
@@ -18,25 +21,26 @@ def quitGUI(origin, target, pseudo, leader):
     changeGUI(origin, target)
     afficher_scores(leader, target)
 
-def entre():
-    statut = True
-    while statut == True:
-        lettre = str(input("Choisissez une lettre: "))
-        if len(lettre) == 1 and lettre.isalpha():
-            statut = False
-        else:
-            print("Veuillez rentrer qu'une seule lettre!")
-    return(lettre)
+def affichermot():
+    vide = ['_' for lettre in mot]
+    return(motaffiche)
+    #nb caractères dans motaffiche = 13, puis ajouter par numero de caractere des _ et des espaces. Lors du 'devinement' du mot, on remplace la lettre à la position 13+2n (car espace) par la lettre deviné. 
 
-#change input to take from the GUI
+def entre(input_Entry, input_Label):
+    lettre = input_Entry.get()
+    if len(lettre) == 1 and lettre.isalpha():
+        statut = False
+        return(lettre)
+    else:
+        input_Label.configure(text="Veuillez rentrer qu'une seule lettre!")
+        return(0)
 
-def traitement():
+def traitement(lettre, mot, input_Label, mot_Label):
     global fautes
-    lettre = entre()
     erreur = True
     for i in range(len(mot)):
         if lettre in interdite:
-            print("Vous avez déjà utiliser cette lettre!")
+            input_Label.configure(text="Vous avez déjà utiliser cette lettre!")
             break
         elif lettre == mot[i]:
             erreur = False
@@ -44,6 +48,11 @@ def traitement():
     if erreur == True:
         interdite.append(lettre)
         fautes +=1
+
+def soumettre(input_Entry, input_Label, mot, mot_Label):
+    lettre = entre(input_Entry, input_Label)
+    if lettre != 0:
+        traitement(lettre, mot, input_Label, mot_Label)
 
 def get_Pseudo(entry, label, origin, target, game_Pseudo): #Pour le GUY pseudo
     pseudo = entry.get()
