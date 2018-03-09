@@ -1,7 +1,6 @@
 ##Variables locales
 
 langue = 0
-niveau = 0
 
 mots_pour_pendu = {'Niveau 1':{'Français':["chat","lait","viande","lit","chaise","veste","boite","train","bonbon","sac"],
                               'English':["cat","milk","meat","bed","chair","coat","box","train","sweet","bag"]},
@@ -28,11 +27,3 @@ def changeLang(language_Label, languages):
     else:
         langue += 1
     language_Label.configure(text=languages[langue])
-
-def changeLevel(level_Label, levels):
-    global niveau
-    if niveau == 3:
-        niveau = 0
-    else:
-        niveau += 1
-    level_Label.configure(text=levels[niveau])

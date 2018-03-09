@@ -7,7 +7,6 @@ from motspourpendu import *
 from leaderboard import *
 
 languages = ["Français", "English", "Deutsch", "Español", "Italiano"]
-levels = ["Niveau 1", "Niveau 2", "Niveau 3", "X-pert"] #Enlever le niveau si utilisiation dico texte
 
 ##Definition de l'interface graphique
 menu = Tk()
@@ -22,7 +21,6 @@ place_Hold1 = Canvas(menu_Frame, width=300, height=30, bg='Black', highlightback
 place_Hold2 = Canvas(menu_Frame, width=300, height=30, bg='Black', highlightbackground='Black')
 # Labels
 language_Label = Label(menu_Frame, text=languages[0], bg='Yellow', font=('Comic Sans MS', 10), padx=5, pady=5)
-level_Label = Label(menu_Frame, text=levels[0], bg='Yellow', font=('Comic Sans MS', 10), padx=5, pady=5)
 # Buttons
 play_Button1 = Button(menu_Frame, text='Jouer', height=2, width=15, bg='Yellow', font=('Comic Sans MS', 15, 'bold'),
                       padx=5, pady=5, command=lambda: changeGUI(menu_Frame, pseudo_Frame))
@@ -34,8 +32,6 @@ quit_Button = Button(menu_Frame, text='Quitter', bg='Yellow', font=('Comic Sans 
                      command=lambda: menu.destroy())
 language_Button = Button(menu_Frame, text='Langue', bg='Yellow', font=('Comic Sans MS', 12),
                          command=lambda: changeLang(language_Label, languages))
-level_Button = Button(menu_Frame, text='Niveau', bg='Yellow', font=('Comic Sans MS', 12),
-                      command=lambda: changeLevel(level_Label, levels))
 # Desssins de canvas
 pendu_Canvas.create_line(20, 270, 220, 270, fill='red', width=5)
 pendu_Canvas.create_line(50, 270, 50, 30, fill='red', width=5)
@@ -58,10 +54,8 @@ rules_Button.grid(row=4, column=3)
 credits_Button.grid(row=5, column=3)
 quit_Button.grid(row=8, column=6)
 language_Button.grid(row=1, column=5, sticky=E)
-level_Button.grid(row=1, column=1)
 pendu_Canvas.grid(row=3, rowspan=3, column=4, columnspan=2, padx=5)
 language_Label.grid(row=1, column=6)
-level_Label.grid(row=1, column=2, sticky=W)
 place_Hold1.grid(row=6, column=1, columnspan=6)
 place_Hold2.grid(row=2, column=1, columnspan=6)
 menu_Frame.pack()  # Affichage au lancement
@@ -109,19 +103,20 @@ pseudo_Button.grid(row=2, column=2)
 ##Frame du jeu
 game_Frame = Frame(menu, bg='Black', cursor='X_cursor')
 # Canvas
-place_Hold3 = Canvas(game_Frame, width=300, height=30, bg='Black', highlightbackground='Black')
-place_Hold4 = Canvas(game_Frame, width=30, height=300, bg='Black', highlightbackground='Black')
+place_Hold3 = Canvas(game_Frame, width=30, height=300, bg='Black', highlightbackground='Black')
 pendu_Anime = Canvas(game_Frame, width=240, height=280, bg='Black', highlightbackground='Yellow')
 # Entry
 input_Entry = Entry(game_Frame, font=('Comic Sans MS', 12))
 # Label
 game_Pseudo = Label(game_Frame, text='Pseudo: ', bg='Yellow', fg='Black', font=('Comic Sans MS', 12))
-mot_Label = Label(game_Frame, text=affichermot(), bg = 'Yellow', fg ='Black', font=('Comic Sans MS', 12))
-input_Label = Label(game_Frame, text='Choisissez une lettre: ', bg = 'Black', fg ='White', font=('Comic Sans MS', 12))
+mot_Label = Label(game_Frame, text=affichermot(), bg ='Yellow', fg='Black', font=('Comic Sans MS', 12))
+input_Label = Label(game_Frame, text='Choisissez une lettre: ', bg='Black', fg ='White', font=('Comic Sans MS', 12))
+interdite_Label = Label(game_Frame, text='Lettres utilisées: ', bg='Yellow', font=('Comic Sans MS', 12))
+return_Label = Label(game_Frame, bg='Black', fg='White', font=('Comic Sans MS', 12))
 # Button
 leave_Button = Button(game_Frame, text="Back to Menu", bg='Yellow', font=('Comic Sans MS', 12),
                      command=lambda: changeGUI(game_Frame, quit_Frame))
-input_Button = Button(game_Frame, text='Avez-vous raison?', bg='Yellow', font=('Comic Sans MS', 12), command=lambda: soumettre(input_Entry, input_Label, mot, mot_Label))
+input_Button = Button(game_Frame, text='Avez-vous raison?', bg='Yellow', font=('Comic Sans MS', 12), command=lambda: soumettre(input_Entry, return_Label, mot_Label, interdite_Label, pendu_Anime))
 # Affichage des widgets
 leave_Button.grid(row=8, column=6, sticky=E)
 game_Pseudo.grid(row=1, column=1)
@@ -129,18 +124,18 @@ mot_Label.grid(row=3, column=2, columnspan=2)
 input_Label.grid(row=4, column=2)
 input_Entry.grid(row=4, column=3)
 input_Button.grid(row=6, column=2, columnspan=2)
-place_Hold3.grid(row=5, column=1, columnspan=4)
-place_Hold4.grid(row=2, rowspan=5, column=4)
+interdite_Label.grid(row=2, column=2, columnspan=3)
+return_Label.grid(row=5, column=2, columnspan=2, pady=5)
+place_Hold3.grid(row=2, rowspan=5, column=4)
 pendu_Anime.grid(row=2, rowspan=3, column=5, columnspan=2)
 
-#game_Frame.pack()
 ##Frame pour quitter
 quit_Frame = Frame(menu, bg='Black', cursor='X_cursor')
 # Définition des widgets
 quit_Label = Label(quit_Frame, text='Voulez vous vraiment quitter la partie?', font=('Comic Sans MS', 15), bg='Black',
                    fg='White')
 oui_Button = Button(quit_Frame, text="Oui", bg='Yellow', font=('Comic Sans MS', 15),
-                    command=lambda: quitGUI(quit_Frame, menu_Frame, pseudo_Entry, score_Frame))
+                    command=lambda: quitGUI(quit_Frame, menu_Frame, pseudo_Entry, score_Frame, pendu_Anime, return_Label, input_Entry))
 non_Button = Button(quit_Frame, text="Non", bg='Yellow', font=('Comic Sans MS', 15),
                     command=lambda: changeGUI(quit_Frame, game_Frame))
 # Affichage des widgets
