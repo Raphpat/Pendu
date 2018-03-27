@@ -77,7 +77,7 @@ menu_Button1.grid(row=4, column=3)
 
 ##Frame des crédits
 credits_Frame = Frame(menu, bg='#065a82', cursor='X_cursor')
-# Importation des cr$édits
+# Importation des crédits
 credits_txt = open("credits.txt", "r", encoding="UTF8").read()
 # Définition des widgets
 credits_Label = Label(credits_Frame, text=credits_txt, fg='#f5f0f6', bg='#065a82', font=('Comic Sans MS', 12), padx=5,
@@ -145,13 +145,13 @@ non_Button.grid(row=2, column=2)
 
 ## Frame défaite/victoire
 vicdef_Frame = Frame(menu, bg='#065a82', cursor='X_cursor')
-#defdesWidgets
+# Definition des Widgets
 score_Label = Label(vicdef_Frame, text='Score: ', font=('Comic Sans MS', 12), bg='#065a82', fg='#f5f0f6')
 erreur_Label = Label(vicdef_Frame, text='Erreur(s): ', font=('Comic Sans MS', 12), bg='#065a82', fg='#f5f0f6')
 resultat_Label = Label(vicdef_Frame, font=('Comic Sans MS', 25), bg='#065a82', fg='#f5f0f6')
 quit1_Button = Button(vicdef_Frame, text="Retour au menu", bg='#1e3231', fg='#f5f0f6', font=('Comic Sans MS', 15),
                     command=lambda: quitGUI(vicdef_Frame, menu_Frame, pseudo_Entry, score_Frame, pendu_Anime, return_Label, input_Entry, interdite_Label))
-#afficherleswidgets
+# Affichage des widgets
 score_Label.grid(row=1, column=2)
 erreur_Label.grid(row=3, column=2)
 resultat_Label.grid(row=5, column=2)

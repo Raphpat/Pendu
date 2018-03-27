@@ -7,18 +7,16 @@ from motspourpendu import getMot
 
 ##Variables locales
 pseudoText = 'Pseudo: '
-couleur = '#fca311'
-vide = []
-interdite = []
-mot = ''
-vide = []
+couleur = '#fca311' 
+interdite = [] #lettres utilisées
+mot = '' #mot à a deviner
+vide = [] #liste avec les _ 
 fautes = 0
-interdite = []
 score = 0
 
 ##Fonctions
 
-def start(return_Label, mot_Label):
+def start(return_Label, mot_Label): #initie le jeu, en choisissant un mot, créant le vide et affichant le mot
     global mot
     global vide
     mot = getMot()
@@ -28,22 +26,22 @@ def start(return_Label, mot_Label):
     return_Label.configure(text='')
     mot_Label.configure(text=affichermot())
 
-def changeGUI(origin, target): #pour chaque fenêtre
+def changeGUI(origin, target): #permet de changer de fenêtre
     origin.pack_forget()
     target.pack()
 
-def play(origin, target, return_Label, mot_Label):
+def play(origin, target, return_Label, mot_Label): #combine les fonctions start et changeGUI , utilisé parle bouton 'jouer'
     start(return_Label, mot_Label)
     changeGUI(origin, target)
 
-def affichermot(): #pour le jeu
+def affichermot(): #affiche le mot à deviner et le progès
     motaffiche = 'Mot à deviner:'
     for i in range(len(vide)):
         motaffiche += ' '
         motaffiche += vide[i]
     return(motaffiche)
 
-def afficherinterdite(): #pour le jeu
+def afficherinterdite(): #affiche les lettres interdites
     interditeaffiche = 'Lettres utilisées:'
     for i in range(len(interdite)):
         interditeaffiche+= ' '
@@ -63,17 +61,18 @@ def quitGUI(origin, target, pseudo, leader, canvas, return_Label, input_Entry, i
         del interdite[0]
     interdite_Label.configure(text=afficherinterdite())
 
-def entre(input_Entry, return_Label): #pour le jeu
+def entre(input_Entry, return_Label): #renvoi la lettre soumise par le joueur.
     lettre = input_Entry.get()
     lettre = lettre.lower()
     if len(lettre) == 1 and lettre.isalpha():
         statut = False
         return(lettre)
+        input_Entry.delete(0,len(lettre))
     else:
         return_Label.configure(text="Veuillez rentrer qu'une seule lettre!")
         return(0)
 
-def drawHang(canvas): #Dessiner le pendu au fur et à mesur
+def drawHang(canvas): #Dessine le pendu au fur et à mesure
     if fautes == 1:
         canvas.create_line(20, 270, 220, 270, fill='black', width=5)
     elif fautes == 2:
@@ -96,9 +95,10 @@ def drawHang(canvas): #Dessiner le pendu au fur et à mesur
         canvas.create_line(180, 140, 150, 120, fill='black', width=5)
     elif fautes == 11:
         canvas.create_line(180, 140, 210, 120, fill='black', width=5)
-        #perdu() fonctionà définir
 
-def vicdef(origin, target, resultat_Label, score_Label, erreur_Label):
+def vicdef(origin, target, resultat_Label, score_Label, erreur_Label): #Vérifie si le joueur a gagné ou perdu
+    global score
+    score -= fautes * 50
     score_Text = 'Score: '+ str(score)
     erreur_Text = 'Erreur(s): '+ str(fautes)
     if '_' not in ''.join(vide):
@@ -112,8 +112,9 @@ def vicdef(origin, target, resultat_Label, score_Label, erreur_Label):
         score_Label.configure(text=score_Text)
         erreur_Label.configure(text=erreur_Text)
 
-def traitement(lettre, mot, return_Label, mot_Label, interdite_Label, pendu_Anime): #pour le jeu
+def traitement(lettre, mot, return_Label, mot_Label, interdite_Label, pendu_Anime): #vérifie si une lettre est dans le mot
     global fautes
+    global score
     erreur = True
     utilisation = False
     for i in range(len(vide)):
@@ -124,6 +125,7 @@ def traitement(lettre, mot, return_Label, mot_Label, interdite_Label, pendu_Anim
             erreur = False
             vide[i] = mot[i]
             utilisation = True
+            score += 200
     if erreur == True:
         fautes +=1
         utilisation = True
@@ -141,13 +143,13 @@ def traitement(lettre, mot, return_Label, mot_Label, interdite_Label, pendu_Anim
         interdite.append(lettre)
     interdite_Label.configure(text=afficherinterdite())
 
-def soumettre(input_Entry, return_Label, mot_Label, interdite_Label, pendu_Anime, origin, target, resultat_Label, score_Label, erreur_Label): #pour le jeu
+def soumettre(input_Entry, return_Label, mot_Label, interdite_Label, pendu_Anime, origin, target, resultat_Label, score_Label, erreur_Label): #fonction qui appel traitement et vicdef 
     lettre = entre(input_Entry, return_Label)
     if lettre != 0:
         traitement(lettre, mot, return_Label, mot_Label, interdite_Label, pendu_Anime)
     vicdef(origin, target, resultat_Label, score_Label, erreur_Label)
 
-def get_Pseudo(entry, label, origin, target, game_Pseudo): #Pour le GUY pseudo
+def get_Pseudo(entry, label, origin, target, game_Pseudo): #prend le pseudo entré par le joueur.
     pseudo = entry.get()
     pseudoBar = pseudoText
     if len(pseudo) == 0:
