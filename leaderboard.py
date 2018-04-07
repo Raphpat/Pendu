@@ -1,12 +1,12 @@
 from tkinter import Label, Frame
 
-leaderboard = open("F:/Pendu-master/leaderboard.txt", "a")
+leaderboard = open("F:/Pendu-master/leaderboard.txt", "a") #le mode d'ouverture 'a' permet de creer un fichier vide si il n'existe pas
 leaderboard.close()
 
 scores=[]
 
 #Méthode permettant de stocker dans scores les scores dans le document leaderboard.txt
-with open("F:/Pendu-master/leaderboard.txt","r") as document: #When adding a score, need to add to the txt AND the score[] so that it is able to be shown.
+with open("F:/Pendu-master/leaderboard.txt","r") as document:
     for line in document:
         line = line.split()
         if not line:

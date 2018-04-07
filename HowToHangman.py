@@ -1,11 +1,10 @@
 ##Module de fonctions
-#11 erreurs pour perdre
 
 from leaderboard import afficher_scores, scoreAdd
 from tkinter import Canvas
 from motspourpendu import getMot
 
-##Variables locales
+## Variables locales
 pseudoText = 'Pseudo: '
 couleur = '#fca311' 
 interdite = [] #lettres utilisées
@@ -13,8 +12,9 @@ mot = '' #mot à a deviner
 vide = [] #liste avec les _ 
 fautes = 0
 score = 0
+mode = 0
 
-##Fonctions
+## Fonctions generales
 
 def start(return_Label, mot_Label): #initie le jeu, en choisissant un mot, créant le vide et affichant le mot
     global mot
@@ -33,20 +33,6 @@ def changeGUI(origin, target): #permet de changer de fenêtre
 def play(origin, target, return_Label, mot_Label): #combine les fonctions start et changeGUI , utilisé parle bouton 'jouer'
     start(return_Label, mot_Label)
     changeGUI(origin, target)
-
-def affichermot(): #affiche le mot à deviner et le progès
-    motaffiche = 'Mot à deviner:'
-    for i in range(len(vide)):
-        motaffiche += ' '
-        motaffiche += vide[i]
-    return(motaffiche)
-
-def afficherinterdite(): #affiche les lettres interdites
-    interditeaffiche = 'Lettres utilisées:'
-    for i in range(len(interdite)):
-        interditeaffiche+= ' '
-        interditeaffiche+= interdite[i]
-    return(interditeaffiche)
     
 def quitGUI(origin, target, pseudo, leader, canvas, return_Label, input_Entry, interdite_Label): #changeGUI special pour fin de jeu. Remise de tout à 0
     global vide
@@ -61,13 +47,29 @@ def quitGUI(origin, target, pseudo, leader, canvas, return_Label, input_Entry, i
         del interdite[0]
     interdite_Label.configure(text=afficherinterdite())
 
+## Fonctions du jeu
+
+def afficherinterdite(): #affiche les lettres interdites
+    interditeaffiche = 'Lettres utilisées:'
+    for i in range(len(interdite)):
+        interditeaffiche+= ' '
+        interditeaffiche+= interdite[i]
+    return(interditeaffiche)
+
+def affichermot(): #affiche le mot à deviner et le progès
+    motaffiche = 'Mot à deviner:'
+    for i in range(len(vide)):
+        motaffiche += ' '
+        motaffiche += vide[i]
+    return(motaffiche)
+
 def entre(input_Entry, return_Label): #renvoi la lettre soumise par le joueur.
     lettre = input_Entry.get()
     lettre = lettre.lower()
     if len(lettre) == 1 and lettre.isalpha():
         statut = False
-        return(lettre)
         input_Entry.delete(0,len(lettre))
+        return(lettre)
     else:
         return_Label.configure(text="Veuillez rentrer qu'une seule lettre!")
         return(0)
@@ -156,6 +158,8 @@ def soumettre(input_Entry, return_Label, mot_Label, interdite_Label, pendu_Anime
         traitement(lettre, mot, return_Label, mot_Label, interdite_Label, pendu_Anime)
     vicdef(origin, target, resultat_Label, score_Label, erreur_Label, entry)
 
+##Fonctions de la frame pseudo
+
 def get_Pseudo(entry, label, origin, target, game_Pseudo): #prend le pseudo entré par le joueur et l'affiche.
     pseudo = entry.get()
     pseudoBar = pseudoText
@@ -165,3 +169,12 @@ def get_Pseudo(entry, label, origin, target, game_Pseudo): #prend le pseudo entr
         changeGUI(origin, target)
         pseudoBar += pseudo
         game_Pseudo.configure(text = pseudoBar)
+
+def changeMode(button): #passe du mode de jeu normal à speed pendu et inversement
+    global mode
+    if mode == 0:
+        mode = 1
+        button.configure(text='Speed Pendu')
+    else:
+        mode = 0
+        button.configure(text='Normal')

@@ -3,6 +3,9 @@ L'ordinateur a choisi un mot que vous devez
 deviner en proposant des lettres.
 Si une lettre est juste, elle s'affiche.
 Sinon, vous marquez une faute
-et vous vous rapprocher de la pendaison.
+et vous vous rapprochez de la pendaison.
 Quand la potence et l'homme sont entierement dessines,
 c'est perdu!
+
+Vous pouvez choisir la langue dans
+laquelle vous voulez jouer sur le menu d'accueil.

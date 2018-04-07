@@ -91,14 +91,18 @@ menu_Button2.grid(row=3, column=3)
 ##Frame du pseudo
 pseudo_Frame = Frame(menu, bg='#065a82', cursor='X_cursor')
 # Définition des widgets
-pseudo_Label = Label(pseudo_Frame, text='Entrez votre pseudo', font=('Comic Sans MS', 12), bg='#065a82', fg='#f5f0f6')
+pseudo_Label = Label(pseudo_Frame, text='Entrez votre pseudo:', font=('Comic Sans MS', 12), bg='#065a82', fg='#f5f0f6')
 pseudo_Entry = Entry(pseudo_Frame, font=('Comic Sans MS', 12))
 pseudo_Button = Button(pseudo_Frame, text='Soumettre', bg='#1e3231', fg='#f5f0f6', font=('Comic Sans MS', 12),
                        command=lambda: get_Pseudo(pseudo_Entry, pseudo_Label, pseudo_Frame, game_Frame, game_Pseudo))
+mode_Label = Label(pseudo_Frame, text='Choisissez le mode de jeu', font=('Comic Sans MS', 12), bg='#065a82', fg='#f5f0f6')
+mode_Button = Button(pseudo_Frame, text='Normal', bg='#1e3231', fg='#f5f0f6', font=('Comic Sans MS', 12), command=lambda: changeMode(mode_Button))
 # Affichage des widgets
 pseudo_Label.grid(row=1, column=1)
 pseudo_Entry.grid(row=2, column=1, padx=5)
-pseudo_Button.grid(row=2, column=2)
+pseudo_Button.grid(row=2, column=2, pady=5)
+mode_Label.grid(row=3, column=1)
+mode_Button.grid(row=3, column=2)
 
 ##Frame du jeu
 game_Frame = Frame(menu, bg='#065a82', cursor='X_cursor')
