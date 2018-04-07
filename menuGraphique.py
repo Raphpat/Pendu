@@ -116,7 +116,7 @@ return_Label = Label(game_Frame, bg='#065a82', fg='#f5f0f6', font=('Comic Sans M
 # Button
 leave_Button = Button(game_Frame, text="Back to Menu", bg='#1e3231', fg='#f5f0f6', font=('Comic Sans MS', 12),
                      command=lambda: changeGUI(game_Frame, quit_Frame))
-input_Button = Button(game_Frame, text='Soumettre', bg='#1e3231', fg='#f5f0f6', font=('Comic Sans MS', 12), command=lambda: soumettre(input_Entry, return_Label, mot_Label, interdite_Label, pendu_Anime, game_Frame, vicdef_Frame, resultat_Label, score_Label, erreur_Label))
+input_Button = Button(game_Frame, text='Soumettre', bg='#1e3231', fg='#f5f0f6', font=('Comic Sans MS', 12), command=lambda: soumettre(input_Entry, return_Label, mot_Label, interdite_Label, pendu_Anime, game_Frame, vicdef_Frame, resultat_Label, score_Label, erreur_Label, pseudo_Entry))
 # Affichage des widgets
 leave_Button.grid(row=8, column=6, sticky=E)
 game_Pseudo.grid(row=1, column=1)

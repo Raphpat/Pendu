@@ -1,7 +1,7 @@
 ##Module de fonctions
 #11 erreurs pour perdre
 
-from leaderboard import afficher_scores
+from leaderboard import afficher_scores, scoreAdd
 from tkinter import Canvas
 from motspourpendu import getMot
 
@@ -96,21 +96,28 @@ def drawHang(canvas): #Dessine le pendu au fur et à mesure
     elif fautes == 11:
         canvas.create_line(180, 140, 210, 120, fill='black', width=5)
 
-def vicdef(origin, target, resultat_Label, score_Label, erreur_Label): #Vérifie si le joueur a gagné ou perdu
+def vicdef(origin, target, resultat_Label, score_Label, erreur_Label, entry): #Vérifie si le joueur a gagné ou perdu
     global score
+    global fautes
     score -= fautes * 50
     score_Text = 'Score: '+ str(score)
     erreur_Text = 'Erreur(s): '+ str(fautes)
     if '_' not in ''.join(vide):
+        scoreAdd(score, entry.get())
         changeGUI(origin, target)
         resultat_Label.configure(text='Victoire!')
         score_Label.configure(text=score_Text)
         erreur_Label.configure(text=erreur_Text)
+        score = 0
+        fautes = 0
     elif fautes == 11:
+        scoreAdd(score, entry.get())
         changeGUI(origin, target)
         resultat_Label.configure(text='Défaite :(')
         score_Label.configure(text=score_Text)
         erreur_Label.configure(text=erreur_Text)
+        score = 0
+        fautes = 0
 
 def traitement(lettre, mot, return_Label, mot_Label, interdite_Label, pendu_Anime): #vérifie si une lettre est dans le mot
     global fautes
@@ -143,13 +150,13 @@ def traitement(lettre, mot, return_Label, mot_Label, interdite_Label, pendu_Anim
         interdite.append(lettre)
     interdite_Label.configure(text=afficherinterdite())
 
-def soumettre(input_Entry, return_Label, mot_Label, interdite_Label, pendu_Anime, origin, target, resultat_Label, score_Label, erreur_Label): #fonction qui appel traitement et vicdef 
+def soumettre(input_Entry, return_Label, mot_Label, interdite_Label, pendu_Anime, origin, target, resultat_Label, score_Label, erreur_Label, entry): #fonction qui appel traitement et vicdef 
     lettre = entre(input_Entry, return_Label)
     if lettre != 0:
         traitement(lettre, mot, return_Label, mot_Label, interdite_Label, pendu_Anime)
-    vicdef(origin, target, resultat_Label, score_Label, erreur_Label)
+    vicdef(origin, target, resultat_Label, score_Label, erreur_Label, entry)
 
-def get_Pseudo(entry, label, origin, target, game_Pseudo): #prend le pseudo entré par le joueur.
+def get_Pseudo(entry, label, origin, target, game_Pseudo): #prend le pseudo entré par le joueur et l'affiche.
     pseudo = entry.get()
     pseudoBar = pseudoText
     if len(pseudo) == 0:
