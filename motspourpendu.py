@@ -14,7 +14,8 @@ def changeLang(language_Label, languages): #Change la langue des mots du jeu
         langue += 1
     language_Label.configure(text=languages[langue])
 
-def getMot(): #Chosi un mot aleatoirement depuis le fichier texte de la langue specifiee
+def getMot():
+    #Chosi un mot aleatoirement depuis le fichier texte de la langue specifiee
     if langue == 0:
         fichier = open("F:/Pendu-master/motsFrancais.txt")
     elif langue == 1:
