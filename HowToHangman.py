@@ -101,10 +101,10 @@ def drawHang(canvas): #Dessine le pendu au fur et à mesure
 def vicdef(origin, target, resultat_Label, score_Label, erreur_Label, entry): #Vérifie si le joueur a gagné ou perdu
     global score
     global fautes
-    score -= fautes * 50
-    score_Text = 'Score: '+ str(score)
-    erreur_Text = 'Erreur(s): '+ str(fautes)
     if '_' not in ''.join(vide):
+        score -= fautes * 50
+        score_Text = 'Score: '+ str(score)
+        erreur_Text = 'Erreur(s): '+ str(fautes)
         scoreAdd(score, entry.get())
         changeGUI(origin, target)
         resultat_Label.configure(text='Victoire!')
@@ -113,6 +113,9 @@ def vicdef(origin, target, resultat_Label, score_Label, erreur_Label, entry): #V
         score = 0
         fautes = 0
     elif fautes == 11:
+        score -= 11 * 50
+        score_Text = 'Score: '+ str(score)
+        erreur_Text = 'Erreur(s): '+ str(fautes)
         scoreAdd(score, entry.get())
         changeGUI(origin, target)
         resultat_Label.configure(text='Défaite :(')

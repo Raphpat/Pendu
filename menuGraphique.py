@@ -22,8 +22,7 @@ place_Hold2 = Canvas(menu_Frame, width=300, height=30, bg='#065a82', highlightba
 # Labels
 language_Label = Label(menu_Frame, text=languages[0], fg='#f5f0f6', bg='#1e3231', font=('Comic Sans MS', 10), padx=5, pady=5)
 # Buttons
-play_Button1 = Button(menu_Frame, text='Jouer', height=2, width=15, fg='#f5f0f6', bg='#1e3231', font=('Comic Sans MS', 15, 'bold'),
-                      padx=5, pady=5, command=lambda: play(menu_Frame, pseudo_Frame, return_Label, mot_Label))
+play_Button1 = Button(menu_Frame, text='Jouer', height=2, width=15, fg='#f5f0f6', bg='#1e3231', font=('Comic Sans MS', 15, 'bold'), padx=5, pady=5, command=lambda: play(menu_Frame, pseudo_Frame, return_Label, mot_Label))
 rules_Button = Button(menu_Frame, text='Règles', width=15, fg='#f5f0f6', bg='#1e3231', font=('Comic Sans MS', 15, 'bold'), padx=5,
                       pady=5, command=lambda: changeGUI(menu_Frame, rules_Frame))
 credits_Button = Button(menu_Frame, text='Crédits', width=15,  fg='#f5f0f6', bg='#1e3231', font=('Comic Sans MS', 15, 'bold'), padx=5,
@@ -67,7 +66,7 @@ rules_txt = open("rules.txt", "r", encoding="UTF8").read()
 # Définition des widgets
 rules_Label = Label(rules_Frame, text=rules_txt,  fg='#f5f0f6', bg='#065a82', font=('Comic Sans MS', 12), padx=5, pady=15)
 play_Button2 = Button(rules_Frame, text='Jouer',  fg='#f5f0f6', bg='#1e3231', font=('Comic Sans MS', 12),
-                      command=lambda: changeGUI(rules_Frame, pseudo_Frame))
+                      command=lambda: play(rules_Frame, pseudo_Frame, return_Label, mot_Label))
 menu_Button1 = Button(rules_Frame, text='Menu ', fg='#f5f0f6', bg='#1e3231', font=('Comic Sans MS', 12),
                       command=lambda: changeGUI(rules_Frame, menu_Frame))
 # Affichage des widgets
@@ -155,6 +154,7 @@ erreur_Label = Label(vicdef_Frame, text='Erreur(s): ', font=('Comic Sans MS', 12
 resultat_Label = Label(vicdef_Frame, font=('Comic Sans MS', 25), bg='#065a82', fg='#f5f0f6')
 quit1_Button = Button(vicdef_Frame, text="Retour au menu", bg='#1e3231', fg='#f5f0f6', font=('Comic Sans MS', 15),
                     command=lambda: quitGUI(vicdef_Frame, menu_Frame, pseudo_Entry, score_Frame, pendu_Anime, return_Label, input_Entry, interdite_Label))
+mot2_Label = Label(vicdef_Frame, text='Mot: ', font=('Comic Sans MS', 12), bg='#065a82', fg='#f5f0f6')
 # Affichage des widgets
 score_Label.grid(row=1, column=2)
 erreur_Label.grid(row=3, column=2)

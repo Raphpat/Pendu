@@ -16,11 +16,10 @@ with open("F:/Pendu-master/leaderboard.txt","r") as document:
         scores[i][1] = int(scores[i][1])
 
 def score_Sort(): #Trie les scores  
-    scores.sort(key=lambda x: x[1])
+    scores.sort(key=lambda x: x[1]) 
     scores.reverse()
-    if len(scores)>10:
-        for i in range(9,len(scores)-1):
-            del scores[10]
+    while len(scores) > 10:
+        del scores[10]
 
 def scoreAdd(score, pseudo): #Ajoute les scores au fichier des leaderboards
     file = open("F:/Pendu-master/leaderboard.txt", "a")
