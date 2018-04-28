@@ -195,5 +195,5 @@ mot2_Label.grid(row=4, column=2)
 resultat_Label.grid(row=5, column=2)
 quit1_Button.grid(row=7, column=2)
 
-#Mainloop
+#Mainloop = lancement du gestionnaire d'événements
 menu.mainloop()
