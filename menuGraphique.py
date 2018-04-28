@@ -9,7 +9,7 @@ from leaderboard import *
 languages = ["Français", "English", "Deutsch", "Español", "Italiano"]
 
 ##Definition de l'interface graphique
-menu = Tk()
+menu = Tk() #création de la fenetre principale
 menu.title("Pendu")
 # menu.geometry("720x480+100+0")
 
