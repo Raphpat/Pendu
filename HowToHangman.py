@@ -12,7 +12,7 @@ mot = '' #mot à a deviner
 vide = [] #liste avec les _ 
 fautes = 0
 score = 0
-mode = 0
+#mode = 0
 
 ## Fonctions generales
 
