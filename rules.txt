@@ -9,3 +9,6 @@ c'est perdu!
 
 Vous pouvez choisir la langue dans
 laquelle vous voulez jouer sur le menu d'accueil.
+
+Attention! Il n'y a pas d'accents 
+dans les mots a deviner.

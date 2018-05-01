@@ -1,10 +1,10 @@
-##Module de fonctions
+"""----------------------------Module de fonctions---------------------------"""
 
 from leaderboard import afficher_scores, scoreAdd
-from tkinter import Canvas
+from tkinter import *
 from motspourpendu import getMot
 
-## Variables locales
+"""-----------------------------Variables locales----------------------------"""
 pseudoText = 'Pseudo: '
 couleur = '#fca311' 
 interdite = [] #lettres utilisées
@@ -12,9 +12,8 @@ mot = '' #mot à a deviner
 vide = [] #liste avec les _ 
 fautes = 0
 score = 0
-#mode = 0
 
-## Fonctions generales
+"""----------------------------Fonctions generales---------------------------"""
 
 def start(return_Label, mot_Label, mot2_Label): 
     #initie le jeu, en choisissant un mot, créant le vide et affichant le mot
@@ -50,7 +49,7 @@ def quitGUI(origin, target, pseudo, leader, canvas, return_Label,
         del interdite[0]
     interdite_Label.configure(text=afficherinterdite())
 
-## Fonctions du jeu
+"""-----------------------------Fonctions du jeu-----------------------------"""
 
 def afficherinterdite(): 
     #renvoie la string avec un texte par defaut et les interdites
@@ -72,7 +71,6 @@ def entre(input_Entry, return_Label): #renvoi la lettre soumise par le joueur.
     lettre = input_Entry.get()
     lettre = lettre.lower()
     if len(lettre) == 1 and lettre.isalpha():
-        statut = False
         input_Entry.delete(0,len(lettre))
         return(lettre)
     else:
@@ -137,16 +135,16 @@ pendu_Anime): #vérifie si une lettre est dans le mot
     erreur = True
     utilisation = False
     for i in range(len(vide)):
-        if lettre in interdite:
+        if lettre in interdite: #si la lettre a été utilisé auparavent
             erreur = False
             break
-        elif lettre == mot[i]:
+        elif lettre == mot[i]: #si la lettre est juste
             erreur = False
             vide[i] = mot[i]
             utilisation = True
             score += 200
-    if erreur == True:
-        fautes +=1
+    if erreur == True: #si la lettre n'est ni dans interdite ou le mot
+        fautes += 1
         utilisation = True
         return_Label.configure(text="Cette lettre n'est pas dans le mot!")
         drawHang(pendu_Anime)
@@ -171,8 +169,8 @@ pendu_Anime, origin, target, resultat_Label, score_Label, erreur_Label, entry):
         traitement(lettre, mot, return_Label, mot_Label, interdite_Label, 
         pendu_Anime)
     vicdef(origin, target, resultat_Label, score_Label, erreur_Label, entry)
-
-##Fonctions de la frame pseudo
+    
+"""-----------------------Fonctions de la frame pseudo-----------------------"""
 
 def get_Pseudo(entry, label, origin, target, game_Pseudo):
     #prend le pseudo entré par le joueur et l'affiche.
@@ -184,12 +182,3 @@ def get_Pseudo(entry, label, origin, target, game_Pseudo):
         changeGUI(origin, target)
         pseudoBar += pseudo
         game_Pseudo.configure(text = pseudoBar)
-
-def changeMode(button):#passe du mode de jeu normal à speed pendu et inversement
-    global mode
-    if mode == 0:
-        mode = 1
-        button.configure(text='Speed Pendu')
-    else:
-        mode = 0
-        button.configure(text='Normal')

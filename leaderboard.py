@@ -17,6 +17,8 @@ with open("F:/Pendu-master/leaderboard.txt","r") as document:
     for i in range(len(scores)):
         scores[i][1] = int(scores[i][1])
 
+"""---------------------------------Fonctions--------------------------------"""
+
 def score_Sort(): #Trie les scores  
     scores.sort(key=lambda x: x[1]) 
     scores.reverse()

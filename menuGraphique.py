@@ -1,5 +1,6 @@
-##Affichage graphique du jeu
+"""------------------------Affichage graphique du jeu------------------------"""
 
+"""----------------------------------Imports---------------------------------"""
 import os
 from tkinter import *
 from HowToHangman import *
@@ -8,12 +9,13 @@ from leaderboard import *
 
 languages = ["Français", "English", "Deutsch", "Español", "Italiano"]
 
-##Definition de l'interface graphique
-menu = Tk() #création de la fenetre principale dans laquelle les différents frames vont alterner entre visibles et invisibles
-menu.title("Pendu") #master window
+"""-------------------Definition de l'interface graphique--------------------"""
+menu = Tk()
+menu.title("Pendu")
 # menu.geometry("720x480+100+0")
 
-##Frame du menu
+"""-------------------------------Frame du menu------------------------------"""
+
 menu_Frame = Frame(menu, bg='#065a82', cursor='X_cursor')
 # Canvas
 pendu_Canvas = Canvas(menu_Frame, width=240, height=280, bg='#065a82', 
@@ -39,7 +41,7 @@ quit_Button = Button(menu_Frame, text='Quitter', fg='#f5f0f6', bg='#1e3231',
 font=('Comic Sans MS', 12), command=lambda: menu.destroy())
 language_Button = Button(menu_Frame, text='Langue', fg='#f5f0f6', bg='#1e3231',
 font=('Comic Sans MS',12),command=lambda: changeLang(language_Label, languages))
-# Desssins de canvas
+# Desssins de canvas, dessin du pendu statique
 pendu_Canvas.create_line(20, 270, 220, 270, fill='black', width=5)
 pendu_Canvas.create_line(50, 270, 50, 30, fill='black', width=5)
 pendu_Canvas.create_line(48, 30, 180, 30, fill='black', width=5)
@@ -68,7 +70,7 @@ place_Hold1.grid(row=6, column=1, columnspan=6)
 place_Hold2.grid(row=2, column=1, columnspan=6)
 menu_Frame.pack()  # Affichage au lancement
 
-##Frame des règles
+"""------------------------------Frame des regles----------------------------"""
 rules_Frame = Frame(menu, bg='#065a82', cursor='X_cursor')
 # Importation des règles
 rules_txt = open("rules.txt", "r", encoding="UTF8").read()
@@ -85,7 +87,7 @@ rules_Label.grid(row=2, column=2)
 play_Button2.grid(row=3, column=3)
 menu_Button1.grid(row=4, column=3)
 
-##Frame des crédits
+"""-----------------------------Frame des credits----------------------------"""
 credits_Frame = Frame(menu, bg='#065a82', cursor='X_cursor')
 # Importation des crédits
 credits_txt = open("credits.txt", "r", encoding="UTF8").read()
@@ -98,7 +100,7 @@ font=('Comic Sans MS',12), command=lambda: changeGUI(credits_Frame, menu_Frame))
 credits_Label.grid(row=2, column=2)
 menu_Button2.grid(row=3, column=3)
 
-##Frame du pseudo
+"""------------------------------Frame du pseudo-----------------------------"""
 pseudo_Frame = Frame(menu, bg='#065a82', cursor='X_cursor')
 # Définition des widgets
 pseudo_Label = Label(pseudo_Frame, text='Entrez votre pseudo:', 
@@ -107,18 +109,12 @@ pseudo_Entry = Entry(pseudo_Frame, font=('Comic Sans MS', 12))
 pseudo_Button = Button(pseudo_Frame, text='Soumettre', bg='#1e3231', 
 fg='#f5f0f6', font=('Comic Sans MS', 12), command=lambda: 
 get_Pseudo(pseudo_Entry, pseudo_Label, pseudo_Frame, game_Frame, game_Pseudo))
-#mode_Label = Label(pseudo_Frame, text='Choisissez le mode de jeu', 
-#font=('Comic Sans MS', 12), bg='#065a82', fg='#f5f0f6')
-#mode_Button = Button(pseudo_Frame, text='Normal', bg='#1e3231', fg='#f5f0f6', 
-#font=('Comic Sans MS', 12), command=lambda: changeMode(mode_Button))
 # Affichage des widgets
 pseudo_Label.grid(row=1, column=1)
 pseudo_Entry.grid(row=2, column=1, padx=5)
 pseudo_Button.grid(row=2, column=2, pady=5)
-#mode_Label.grid(row=3, column=1)
-#mode_Button.grid(row=3, column=2)
 
-##Frame du jeu
+"""-------------------------------Frame du jeu-------------------------------"""
 game_Frame = Frame(menu, bg='#065a82', cursor='X_cursor')
 # Canvas
 place_Hold3 = Canvas(game_Frame, width=30, height=300, bg='#065a82', 
@@ -158,7 +154,7 @@ return_Label.grid(row=5, column=2, columnspan=2, pady=5)
 place_Hold3.grid(row=2, rowspan=5, column=4)
 pendu_Anime.grid(row=2, rowspan=3, column=5, columnspan=2)
 
-##Frame pour quitter
+"""-----------------------------Frame pour quitter---------------------------"""
 quit_Frame = Frame(menu, bg='#065a82', cursor='X_cursor')
 # Définition des widgets
 quit_Label = Label(quit_Frame, text='Voulez vous vraiment quitter la partie?', 
@@ -173,7 +169,7 @@ quit_Label.grid(row=1, column=1, columnspan=2)
 oui_Button.grid(row=2, column=1)
 non_Button.grid(row=2, column=2)
 
-## Frame défaite/victoire
+"""---------------------------Frame defaite victoire-------------------------"""
 vicdef_Frame = Frame(menu, bg='#065a82', cursor='X_cursor')
 # Definition des Widgets
 score_Label = Label(vicdef_Frame, text='Score: ', font=('Comic Sans MS', 12), 
@@ -195,5 +191,5 @@ mot2_Label.grid(row=4, column=2)
 resultat_Label.grid(row=5, column=2)
 quit1_Button.grid(row=7, column=2)
 
-#Mainloop = lancement du gestionnaire d'événements
+#Mainloop
 menu.mainloop()
