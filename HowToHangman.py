@@ -39,6 +39,8 @@ def play(origin, target, return_Label, mot_Label, mot2_Label):
 def quitGUI(origin, target, pseudo, leader, canvas, return_Label,
  interdite_Label): #changeGUI special pour fin de jeu. Remise de tout à 0
     global vide
+    global fautes
+    fautes = 0
     pseudo.delete(0,len(pseudo.get()))
     changeGUI(origin, target)
     afficher_scores(leader)
