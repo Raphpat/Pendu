@@ -135,7 +135,7 @@ fg='#f5f0f6', font=('Comic Sans MS', 12))
 return_Label = Label(game_Frame, bg='#065a82', fg='#f5f0f6', 
 font=('Comic Sans MS', 12))
 # Button
-leave_Button = Button(game_Frame, text="Back to Menu", bg='#1e3231', 
+leave_Button = Button(game_Frame, text="Retour au Menu", bg='#1e3231', 
 fg='#f5f0f6', font=('Comic Sans MS', 12),command=lambda: 
 changeGUI(game_Frame, quit_Frame))
 input_Button = Button(game_Frame, text='Soumettre', bg='#1e3231', fg='#f5f0f6', 
